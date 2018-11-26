@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_weight="2"
+    android:padding="32dp">
+
+    <TextView
+        android:id="@+id/fragment_signup_score_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_horizontal"
+        android:text="@string/app_title"
+        android:textAllCaps="true"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/fragment_signup_score_subtitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center_horizontal"
+        android:text="@string/fragment_signup_score_subtitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_signup_score_title"/>
+
+    <TextView
+        android:id="@+id/fragment_signup_score_dummy_popularity_score_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:gravity="center_horizontal"
+        android:text="@string/fragment_user_list_popular_points_suffix"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_signup_score_dummy_influence_score_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_signup_score_subtitle"/>
+
+    <TextView
+        android:id="@+id/fragment_signup_score_dummy_popularity_score_result"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/fragment_signup_score_dummy_influence_score_result"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fragment_signup_score_dummy_popularity_score_title"
+        tools:text="123"/>
+
+    <TextView
+        android:id="@id/fragment_signup_score_dummy_influence_score_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/fragment_user_list_influential_points_suffix"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fragment_signup_score_dummy_popularity_score_title"
+        app:layout_constraintTop_toTopOf="@id/fragment_signup_score_dummy_popularity_score_title"/>
+
+    <TextView
+        android:id="@+id/fragment_signup_score_dummy_influence_score_result"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/fragment_signup_score_dummy_popularity_score_result"
+        app:layout_constraintTop_toTopOf="@+id/fragment_signup_score_dummy_popularity_score_result"
+        tools:text="123"/>
+
+    <ProgressBar
+        android:id="@+id/fragment_sign_score_progress_bar"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="200dp"
+        android:theme="@style/AppTheme.WhiteAccent"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible"/>
+
+    <LinearLayout
+        android:id="@+id/fragment_signup_score_boost_button_container"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/fragment_signup_score_not_now_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="0dp"
+            android:gravity="center_horizontal"
+            android:padding="4dp"
+            android:text="@string/fragment_signup_score_boost_title"
+            android:textStyle="bold"/>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:gravity="center_horizontal"
+            android:src="@drawable/ic_instagram_logo"/>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/fragment_signup_score_not_now_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/fragment_signup_score_not_now_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <Button
+        android:id="@+id/fragment_signup_score_see_my_ranking_button"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="@string/fragment_signup_score_see_my_ranking"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_signup_score_boost_button_container"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fragment_signup_score_boost_button_container"
+        tools:visibility="visible"/>
+
+</android.support.constraint.ConstraintLayout>

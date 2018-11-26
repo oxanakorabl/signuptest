@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="primary">#0a020f</color>
+    <color name="primary_dark">#0a020f</color>
+    <color name="accent">#ffae00</color>
+
+    <color name="primary_25">#800a020f</color>
+
+    <color name="white_10">#1affffff</color>
+    <color name="white_25">#40ffffff</color>
+    <color name="white_50">#80ffffff</color>
+
+    <color name="activity_main_bottom_navigation_top">#4de8e8e8</color>
+
+    <color name="purple">#5b4a62</color>
+
+    <color name="user_list_points_subtracted">#ff1749</color>
+
+</resources>

@@ -1,0 +1,38 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primary_dark</item>
+        <item name="colorAccent">@color/accent</item>
+        <item name="android:navigationBarColor">@color/primary</item>
+        <!-- NumberPicker Style -->
+        <item name="np_textColor">@android:color/white</item>
+        <item name="np_dividerThickness">1dp</item>
+        <item name="np_dividerColor">@color/white_10</item>
+        <item name="np_textSize">16sp</item>
+        <!-- Material Dialog Style -->
+        <item name="md_background_color">@color/primary</item>
+        <item name="md_title_color">@color/accent</item>
+        <item name="android:actionMenuTextAppearance">@style/LowerCaseTextAppearance</item>
+        <item name="md_positive_color">@android:color/white</item>
+        <item name="md_negative_color">@android:color/transparent</item>
+        <item name="android:datePickerStyle">@android:style/Widget.DatePicker</item>
+    </style>
+
+    <style name="AppTheme.WhiteAccent" parent="AppTheme">
+        <item name="colorAccent">@android:color/white</item>
+    </style>
+
+    <style name="SingleLineText">
+        <item name="android:lines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="LowerCaseTextAppearance" parent="android:TextAppearance.Holo.Widget.ActionBar.Menu">
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+</resources>

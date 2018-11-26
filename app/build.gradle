@@ -1,0 +1,208 @@
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion compileSdk
+    buildToolsVersion buildTools
+    defaultConfig {
+        applicationId "com.list101.list101"
+        minSdkVersion minSdk
+        targetSdkVersion targetSdkVersion
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+        // needed for Android N+ to put in the apk only English resources even from other .aar libs. If we add a new language, add it here too
+        resConfigs "en"
+        buildConfigField "String", "API_VERSION", '"v1.3"'
+        buildConfigField "String", "CONFIG_URL", '"..."'
+    }
+
+    aaptOptions {
+        // turns off the default PNG cruncher, use the command "gradlew optimizePng" instead
+        cruncherEnabled false
+    }
+
+    signingConfigs {
+        releaseConfig {
+            storeFile file("keystore/list101-app-key.keystore")
+            storePassword "...."
+            keyAlias "..."
+            keyPassword "..."
+        }
+        debugConfig {
+            storeFile file("keystore/list101-app-key-debug.keystore")
+            storePassword "..."
+            keyAlias "..."
+            keyPassword "..."
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    flavorDimensions "proguardSettings", "environment"
+    productFlavors {
+        noObfuscate {
+            dimension "proguardSettings"
+            proguardFile file("proguard/proguard-debug.cfg")
+        }
+        obfuscate {
+            dimension "proguardSettings"
+            proguardFile file("proguard/proguard-release.cfg")
+        }
+        production {
+            dimension "environment"
+            buildConfigField "String", "API_URL", '"https://apiprod.list101global.com/"'
+        }
+        staging {
+            dimension "environment"
+            buildConfigField "String", "API_URL", '"https://apistaging.list101global.com/"'
+        }
+        development {
+            dimension "environment"
+            buildConfigField "String", "API_URL", '"https://internal.list101global.com/"'
+
+        }
+    }
+
+    buildTypes {
+        debug {
+            versionNameSuffix ".debug"
+            minifyEnabled false
+            shrinkResources false
+            ext.enableCrashlytics = false
+            signingConfig signingConfigs.debugConfig
+        }
+        release {
+            minifyEnabled true
+            shrinkResources true
+            ext.enableCrashlytics = true
+            // TODO: add something to release notes as a file in the future if we need it
+            ext.betaDistributionReleaseNotes = "Release Notes for this build."
+            ext.betaDistributionGroupAliases = "list101-team"
+            signingConfig signingConfigs.releaseConfig
+        }
+        androidtest {
+            minifyEnabled true
+            shrinkResources true
+            ext.enableCrashlytics = true
+            ext.betaDistributionGroupAliases = "testandroidgroup"
+            signingConfig signingConfigs.releaseConfig
+        }
+    }
+
+}
+
+ext.retrofitVersion = '2.3.0'
+ext.leakCanaryVersion = '1.5.4'
+ext.gmsVersion = '11.8.0'
+ext.daggerVersion = '2.11'
+ext.butterknifeVersion = '8.8.1'
+ext.glideVersion = '4.3.1'
+
+dependencies {
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+
+    implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
+    implementation "com.android.support:design:$supportLibraryVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+
+    // standard BottomNavigation doesn't support an action view
+    implementation 'com.github.ittianyu:BottomNavigationViewEx:1.1.7'
+    // for bottom navigation badges
+    implementation 'q.rorbin:badgeview:1.1.0'
+    // for launcher badges
+    implementation "me.leolin:ShortcutBadger:1.1.21@aar"
+
+    implementation "com.google.android.gms:play-services-location:$gmsVersion"
+    implementation "com.google.android.gms:play-services-maps:$gmsVersion"
+    implementation "com.google.firebase:firebase-messaging:$gmsVersion"
+
+    implementation 'com.hannesdorfmann.mosby3:viewstate:3.1.0'
+
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.2@aar'
+
+    implementation "com.github.bumptech.glide:glide:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
+    implementation("com.github.bumptech.glide:okhttp3-integration:4.6.1@aar") {
+        exclude group: 'glide-parent'
+    }
+
+    implementation 'jp.wasabeef:glide-transformations:2.0.2'
+    implementation 'com.github.chrisbanes:PhotoView:2.0.0'
+    implementation 'com.steelkiwi:cropiwa:1.0.3'
+
+    implementation "com.google.dagger:dagger:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    implementation "com.bluelinelabs:logansquare:$loganSquareVersion"
+    kapt "com.bluelinelabs:logansquare-compiler:$loganSquareVersion"
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
+    implementation "com.github.aurae.retrofit2:converter-logansquare:1.4.1"
+
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.2.0'
+    // RxJava2 doesn't allow to emmit nulls, so we need Optional (it's a backport library)
+    implementation 'com.fernandocejas:arrow:1.0.0'
+
+    implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
+
+    implementation "com.jakewharton:butterknife:$butterknifeVersion"
+    implementation 'me.relex:circleindicator:1.2.2@aar'
+    kapt "com.jakewharton:butterknife-compiler:$butterknifeVersion"
+
+    implementation 'com.shawnlin:number-picker:2.4.2'
+    implementation 'com.afollestad.material-dialogs:core:0.9.5.0'
+
+    implementation 'com.jakewharton.timber:timber:4.6.1'
+
+    debugImplementation "com.squareup.leakcanary:leakcanary-android:$leakCanaryVersion"
+    releaseImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    androidtestImplementation "com.squareup.leakcanary:leakcanary-android-no-op:$leakCanaryVersion"
+    implementation 'com.github.pwittchen:reactivenetwork-rx2:0.12.3'
+
+    implementation 'net.danlew:android.joda:2.9.9'
+
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.0@aar') {
+        transitive = true
+    }
+
+    implementation 'com.facebook.android:facebook-login:4.30.0'
+    implementation 'org.parceler:parceler-api:1.1.10'
+    kapt 'org.parceler:parceler:1.1.10'
+}
+
+android {
+    applicationVariants.all { variant ->
+        def flavor = variant.mergedFlavor
+        def versionCode = System.getenv("BUILD_NUMBER") as Integer ?: 9999
+        def versionName
+        if (variant.getBuildType().name == 'androidtest') {
+            versionName = "test." + versionCode
+        } else {
+            versionName = "0.1." + versionCode
+        }
+        // For BuildConfig
+        flavor.versionCode = versionCode
+        flavor.versionName = versionName
+        // For build process (especially CI)
+        variant.outputs.all { output ->
+            output.setVersionCodeOverride(versionCode)
+            output.setVersionNameOverride(versionName)
+        }
+    }
+}
+
+apply from: "${rootDir}/libraries/BuildScripts/gradle/staticAnalysis.gradle"
+apply plugin: 'com.google.gms.google-services'

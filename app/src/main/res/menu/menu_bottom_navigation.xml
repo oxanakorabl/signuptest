@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/vector_bottom_navigation_list"
+        android:title="@string/app_name"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:enabled="true"
+        android:icon="@drawable/vector_bottom_navigation_talents"
+        android:title="@string/menu_bottom_navigation_talents"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:icon="@drawable/vector_bottom_navigation_profile"
+        android:title="@string/menu_bottom_navigation_profile_you"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:icon="@drawable/vector_bottom_navigation_messages"
+        android:title="@string/menu_bottom_navigation_messages"
+        app:showAsAction="ifRoom"/>
+
+    <item
+        android:icon="@drawable/vector_bottom_navigation_notifications"
+        android:title="@string/menu_bottom_navigation_notifications"
+        app:showAsAction="ifRoom"/>
+
+</menu>
